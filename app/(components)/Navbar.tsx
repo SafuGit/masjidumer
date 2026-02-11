@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { GoogleSignInButton } from "@firebase-oss/ui-react";
+import { useAuth } from "@/app/(lib)/auth-context";
+import { useRouter } from "next/navigation";
 
 const NAV_LINKS = [
   { name: "Home", href: "#" },
@@ -15,6 +17,8 @@ const NAV_LINKS = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, isSuperAdmin, loading } = useAuth();
+  const router = useRouter();
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 dark:bg-emerald-950/90 backdrop-blur-md border-b border-emerald-100 dark:border-emerald-900">
@@ -41,9 +45,26 @@ const Navbar = () => {
 
         {/* Buttons & Mobile Menu Toggle */}
         <div className="flex items-center gap-4">
-          <div className="hidden sm:block">
-            <GoogleSignInButton themed={true}/>
-          </div>
+          {!loading && (
+            <>
+              {!user ? (
+                <div className="hidden sm:block">
+                  <GoogleSignInButton themed={true}/>
+                </div>
+              ) : isSuperAdmin ? (
+                <button 
+                  onClick={() => router.push('/admin')}
+                  className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full font-semibold text-sm transition-all shadow-md shadow-emerald-900/20 active:scale-95 duration-300 ease-in-out hover:shadow-lg hover:shadow-emerald-900/40 cursor-pointer"
+                >
+                  Go to Admin Panel
+                </button>
+              ) : (
+                <div className="px-4 py-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-900 dark:text-emerald-100 rounded-full text-sm font-medium">
+                  {user.email}
+                </div>
+              )}
+            </>
+          )}
           <button className="px-6 py-2.5 bg-primary hover:bg-secondary text-white rounded-full font-semibold text-sm transition-all shadow-md shadow-emerald-900/20 active:scale-95    duration-300 ease-in-out hover:shadow-lg hover:shadow-emerald-900/40 cursor-pointer">
             Donate
           </button>
@@ -72,9 +93,11 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <div className="pt-2 sm:hidden">
-              <GoogleSignInButton themed={true}/>
-            </div>
+            {!loading && !user && (
+              <div className="pt-2 sm:hidden">
+                <GoogleSignInButton themed={true}/>
+              </div>
+            )}
           </div>
         </div>
       )}

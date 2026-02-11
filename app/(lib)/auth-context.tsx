@@ -33,16 +33,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (user) {
         try {
-          const tokenResult = await getIdTokenResult(user);
-          const userRole = (tokenResult.claims.role as UserRole) || 'user';
-          setRole(userRole);
-
+          // Get current ID token
           const idToken = await user.getIdToken();
+          
+          // Initialize user (this sets custom claims if needed)
           await fetch('/api/auth/init-user', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ idToken }),
           });
+
+          // Force refresh the token to get updated claims
+          await user.getIdToken(true);
+          
+          // Now get the token result with updated claims
+          const tokenResult = await getIdTokenResult(user);
+          const userRole = (tokenResult.claims.role as UserRole) || 'user';
+          setRole(userRole);
         } catch (error) {
           console.error('Error getting user role:', error);
           setRole('user');
