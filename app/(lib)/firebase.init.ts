@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { getApps, initializeApp } from "firebase/app";
 import { initializeUI } from '@firebase-oss/ui-core';
+import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,4 +24,6 @@ const ui = initializeUI({
   app
 });
 
-export { app, ui };
+const auth = getAuth();
+
+export { app, ui, auth };
