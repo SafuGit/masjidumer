@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Amiri, Cinzel, Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "./(components)/Navbar";
 
 const cinzel = Cinzel({
   variable: "--font-display",
@@ -97,6 +98,7 @@ export default function RootLayout({
       <body
         className={`antialiased ${cinzel.variable} ${inter.variable} ${amiri.variable}`}
       >
+        <Navbar />
         {children}
       </body>
     </html>
