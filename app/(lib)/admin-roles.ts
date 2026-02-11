@@ -40,8 +40,13 @@ export async function revokeAdminRole(uid: string) {
 
 export async function checkAndAssignSuperAdmin(uid: string) {
   if (SUPER_ADMIN_UIDS.includes(uid)) {
-    console.log(`Auto-assigning super-admin role to ${uid}`);
-    return await setCustomRole(uid, 'super-admin');
+    // Check if user already has super-admin role to avoid redundant updates
+    const currentRole = await getUserCustomClaims(uid);
+    if (currentRole !== 'super-admin') {
+      console.log(`Auto-assigning super-admin role to ${uid}`);
+      return await setCustomRole(uid, 'super-admin');
+    }
+    return { success: true, message: 'User already has super-admin role' };
   }
   return { success: false, message: 'UID not in super-admin list' };
 }

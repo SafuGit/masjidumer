@@ -23,12 +23,15 @@ export async function POST(request: NextRequest) {
       user.displayName || undefined,
     );
 
-    // Automatically assign super-admin role if UID is in the list
-    await checkAndAssignSuperAdmin(user.uid);
-
-    // Refresh user to get updated custom claims
-    const updatedUser = await auth.getUser(user.uid);
-    const customRole = updatedUser.customClaims?.role || role;
+    // Automatically assign super-admin role if UID is in the list (only if not already assigned)
+    const assignResult = await checkAndAssignSuperAdmin(user.uid);
+    
+    // Get the final role - refresh user only if role was just assigned
+    let customRole = user.customClaims?.role || role;
+    if (assignResult.success && assignResult.message !== 'User already has super-admin role') {
+      const updatedUser = await auth.getUser(user.uid);
+      customRole = updatedUser.customClaims?.role || role;
+    }
 
     return NextResponse.json({
       success: true,

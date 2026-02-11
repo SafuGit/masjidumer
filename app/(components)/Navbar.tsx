@@ -8,8 +8,8 @@ import { useAuth } from "@/app/(lib)/auth-context";
 import { useRouter } from "next/navigation";
 
 const NAV_LINKS = [
-  { name: "Home", href: "#" },
-  { name: "About Us", href: "#about" },
+  { name: "Home", href: "/" },
+  { name: "About Us", href: "/about" },
   { name: "Prayer Times", href: "#prayer-times" },
   { name: "Events", href: "#events" },
   { name: "Contact", href: "#contact" },
