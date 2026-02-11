@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@firebase-oss/ui-styles/tailwind";
 
 @theme {
   --color-primary: #064e3b;

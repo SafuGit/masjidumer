@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Amiri, Cinzel, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./(components)/Navbar";
+import { Providers } from "./(components)/Providers";
 
 const cinzel = Cinzel({
   variable: "--font-display",
@@ -95,12 +96,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased ${cinzel.variable} ${inter.variable} ${amiri.variable}`}
-      >
-        <Navbar />
-        {children}
-      </body>
+      <Providers>
+        <body
+          className={`antialiased ${cinzel.variable} ${inter.variable} ${amiri.variable}`}
+        >
+          <Navbar />
+          {children}
+        </body>
+      </Providers>
     </html>
   );
 }

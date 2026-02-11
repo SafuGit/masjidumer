@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { GoogleSignInButton } from "@firebase-oss/ui-react";
 
 const NAV_LINKS = [
   { name: "Home", href: "#" },
@@ -40,6 +41,9 @@ const Navbar = () => {
 
         {/* Buttons & Mobile Menu Toggle */}
         <div className="flex items-center gap-4">
+          <div className="hidden sm:block">
+            <GoogleSignInButton themed={true}/>
+          </div>
           <button className="px-6 py-2.5 bg-primary hover:bg-secondary text-white rounded-full font-semibold text-sm transition-all shadow-md shadow-emerald-900/20 active:scale-95    duration-300 ease-in-out hover:shadow-lg hover:shadow-emerald-900/40 cursor-pointer">
             Donate
           </button>
@@ -68,6 +72,9 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
+            <div className="pt-2 sm:hidden">
+              <GoogleSignInButton themed={true}/>
+            </div>
           </div>
         </div>
       )}
