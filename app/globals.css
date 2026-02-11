@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-primary: #064e3b;
+  --color-secondary: #047857;
+  --color-accent: "#d97706";
+  --background-light: "#fdfdfb";
+  --background-dark: "#022c22";
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: "Cinzel", serif;
+  --font-body: "Inter", sans-serif;
+  --font-arabic: "Amiri", serif;
+
+  --radius-default: 0.5rem;
+  --radius-xl: 1rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +26,17 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.islamic-pattern {
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD5EUYtehMzoI0iHAGYBnYztQxmDGLoQHVbFiTgmBGWpJNexrvpd0n6LFAP2l-taDg7Oba3dOt_P96vonHbAC3cYnp0z62JeqdRWQQWNhQit3LS6AQ6Q2AY1iPeydygY7O4X331GLjDg0HfTFa-oYIgBgRvdqKk_bskQfOOdZE-z-tBiabNKOvIKqnI_WevABUbealNVjra-F_fOPAnl4q6b48LFWf3_lfd4f5xjHtrtboriPwaRdvOw27x0wqG4hfBuRJp98ORTz4);
+  opacity: 0.05;
+}
+
+.hero-gradient {
+  background: linear-gradient(
+    to bottom,
+    rgba(6, 78, 59, 0.8),
+    rgba(6, 78, 59, 0.4)
+  );
 }
