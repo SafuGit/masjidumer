@@ -29,6 +29,9 @@ const AdminSidebar = () => {
   ];
 
   const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
     if (href === '/admin') {
       return pathname === '/admin';
     }
