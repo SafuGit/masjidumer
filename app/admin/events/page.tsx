@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Calendar, Clock, MapPin, Users, Image as ImageIcon, Save, Plus } from "lucide-react";
+import { Calendar, Clock, MapPin, Users, Image as ImageIcon, Plus } from "lucide-react";
 
 interface EventForm {
   title: string;
@@ -12,6 +12,7 @@ interface EventForm {
   category: string;
   capacity?: number;
   imageUrl?: string;
+  registerLink?: string;
 }
 
 export default function EventsPage() {
@@ -24,6 +25,7 @@ export default function EventsPage() {
     category: "general",
     capacity: undefined,
     imageUrl: "",
+    registerLink: "",
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
@@ -60,6 +62,7 @@ export default function EventsPage() {
         category: "general",
         capacity: undefined,
         imageUrl: "",
+        registerLink: "",
       });
     } catch (error) {
       setMessage({
@@ -252,6 +255,22 @@ export default function EventsPage() {
               onChange={handleChange}
               className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-emerald-800 bg-white dark:bg-emerald-950/50 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary dark:focus:ring-emerald-500 focus:border-transparent"
               placeholder="https://example.com/image.jpg"
+            />
+          </div>
+
+          {/* Register Link */}
+          <div>
+            <label htmlFor="registerLink" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+              Registration Link (Optional)
+            </label>
+            <input
+              type="url"
+              id="registerLink"
+              name="registerLink"
+              value={formData.registerLink}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-emerald-800 bg-white dark:bg-emerald-950/50 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary dark:focus:ring-emerald-500 focus:border-transparent"
+              placeholder="https://forms.google.com/..."
             />
           </div>
 

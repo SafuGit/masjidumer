@@ -6,7 +6,7 @@ import { FieldValue } from "firebase-admin/firestore";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { title, description, date, time, location, category, capacity, imageUrl } = body;
+    const { title, description, date, time, location, category, capacity, imageUrl, registerLink } = body;
 
     if (!title || !description || !date || !time || !location || !category) {
       return NextResponse.json(
@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
       category,
       capacity: capacity || null,
       imageUrl: imageUrl || null,
+      registerLink: registerLink || null,
       createdAt: FieldValue.serverTimestamp(),
       updatedAt: FieldValue.serverTimestamp(),
       status: "upcoming", // upcoming, ongoing, completed, cancelled

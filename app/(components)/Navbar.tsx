@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
   { name: "Prayer Times", href: "/#prayer-times" },
-  { name: "Events", href: "#events" },
+  { name: "Events", href: "/events" },
   { name: "Donate", href: "#donate" },
   { name: "Contact", href: "#contact" },
 ];
