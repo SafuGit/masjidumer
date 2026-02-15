@@ -3,6 +3,7 @@ import { Amiri, Cinzel, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./(components)/Navbar";
 import { Providers } from "./(components)/Providers";
+import Footer from "./(components)/Footer";
 
 const cinzel = Cinzel({
   variable: "--font-display",
@@ -102,6 +103,7 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          <Footer />
         </body>
       </Providers>
     </html>
