@@ -128,10 +128,10 @@ export function AdminPanel() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-emerald-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-emerald-950 p-6">
+    <div className="min-h-screen p-6">
       <div className="max-w-5xl mx-auto">
         {/* Header Section */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-emerald-100 dark:border-emerald-900">
+        <div className="rounded-2xl shadow-xl p-8 mb-8 border border-emerald-100 dark:border-emerald-900">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-4xl font-bold bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">

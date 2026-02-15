@@ -1,6 +1,9 @@
+"use client";
 import { MapPin, Phone, Mail, Facebook, Instagram, AtSign } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 const Footer = () => {
+  const pathname = usePathname();
   const navLinks = [
     { name: 'Prayer Times', href: '#' },
     { name: 'Ramadan Calendar', href: '#' },
@@ -28,6 +31,8 @@ const Footer = () => {
     { icon: Instagram, href: '#' },
     { icon: AtSign, href: '#' },
   ];
+
+  if (pathname.startsWith("/admin")) return <></>
 
   return (
     <footer className="bg-primary dark:bg-emerald-950 text-white py-16 relative overflow-hidden">
@@ -80,7 +85,7 @@ const Footer = () => {
                 const IconComponent = contact.icon;
                 return (
                   <li key={index} className="flex items-start gap-3">
-                    <IconComponent className="w-4 h-4 mt-1 text-accent flex-shrink-0" />
+                    <IconComponent className="w-4 h-4 mt-1 text-accent shrink-0" />
                     <span>{contact.text}</span>
                   </li>
                 );

@@ -33,7 +33,7 @@ const Navbar = () => {
     }
   };
 
-  if (pathname == "/admin") return <></>
+  if (pathname.startsWith("/admin")) return <></>
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 dark:bg-emerald-950/90 backdrop-blur-md border-b border-emerald-100 dark:border-emerald-900">
@@ -41,7 +41,12 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center gap-3">
           <Link href={"/"}>
-            <img src="/full-logo.png" width={225} alt="Logo" />
+            <img 
+              src="/full-logo.png" 
+              width={225} 
+              alt="Logo"
+              className="dark:brightness-0 dark:invert"
+            />
           </Link>
         </div>
 
