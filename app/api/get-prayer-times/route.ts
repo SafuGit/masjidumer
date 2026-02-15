@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/app/(lib)/firebase-admin.init";
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const currentDate = new Date();
     const day = String(currentDate.getDate()).padStart(2, "0");
